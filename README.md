@@ -54,7 +54,7 @@ from ossimdb_to_json import Alienvault
 
 av_orm = Alienvault()
 
-av_orm.connect('192.168.1.20s', 'user', 'password')
+av_orm.connect('192.168.1.20', 'user', 'password')
 
 av_orm.hosts.all().result()
 av_orm.hosts.filter(ip='192.168.1.1').result()
