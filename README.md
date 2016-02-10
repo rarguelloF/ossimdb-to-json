@@ -13,7 +13,7 @@ Creating an Alienvault object, you can access to the following models:
 INSTALL
 -------
 
-```
+```bash
 apt-get install libmysqlclient-dev
 python setup.py install
 ```
@@ -28,7 +28,7 @@ First of all, you need to perform some extra configurations on your Alienvault:
 
 - Add this rule on the firewall BEFORE the reject one:
 
-```
+```bash
 # First get the iptables list with the line numbers enabled
 $ iptables -nL --line-numbers
 
@@ -38,7 +38,7 @@ $ iptables -I INPUT {LINE_NUMBER} -i eth1 -p tcp --dport 3306 -s {SOURCE_IP} -j 
 
 - Create a read-only user for your app:
 
-```
+```sql
 CREATE USER 'user'@'%' IDENTIFIED BY 'password';
 GRANT SELECT ON alienvault.* TO 'user'@'%' IDENTIFIED BY 'password';
 FLUSH PRIVILEGES;
@@ -49,12 +49,12 @@ EXAMPLE
 
 Just apply the filters you want to the object and call the result() method.
 
-```
+```python
 from ossimdb_to_json import Alienvault
 
 av_orm = Alienvault()
 
-av_orm.connect('192.168.1.20', 'user', 'password')
+av_orm.connect('192.168.1.20s', 'user', 'password')
 
 av_orm.hosts.all().result()
 av_orm.hosts.filter(ip='192.168.1.1').result()
